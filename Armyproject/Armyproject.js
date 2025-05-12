@@ -8,6 +8,7 @@ var img7;
 var img8;
 var img9;
 var img10;
+var currentColor;
 var initials = 'cg'; // your initials
 var choice = '1'; // starting choice
 var screenbg = 250;
@@ -16,58 +17,117 @@ var lastscreenshot = 61;
 function preload() {
   img = loadImage ('https://CarlosGuzman25.github.io/Armyproject/family.png')  
   img2 = loadImage ('https://CarlosGuzman25.github.io/Armyproject/bbq.png')
-  img3 = loadImage ('beer.png')
-  img4 = loadImage ('car.png')
-  img5 = loadImage ('plant.png')
-  img6 = loadImage ('bed.png')
-  img7 = loadImage ('shower.png')
-  img8 = loadImage ('church.png')
-  img9 = loadImage ('book.png')
-  img10 = loadImage ('music.png')
+  img3 = loadImage ('https://CarlosGuzman25.github.io/Armyproject/beer.png')
+  img4 = loadImage ('https://CarlosGuzman25.github.io/Armyproject/car.png')
+  img5 = loadImage ('https://CarlosGuzman25.github.io/Armyproject/plant.png')
+  img6 = loadImage ('https://CarlosGuzman25.github.io/Armyproject/bed.png')
+  img7 = loadImage ('https://CarlosGuzman25.github.io/Armyproject/shower.png')
+  img8 = loadImage ('https://CarlosGuzman25.github.io/Armyproject/church.png')
+  img9 = loadImage ('https://CarlosGuzman25.github.io/Armyproject/book.png')
+  img10 = loadImage ('https://CarlosGuzman25.github.io/Armyproject/music.png')
 }
 function setup() {
   createCanvas(800, 600);
+  colorMode(RGB,100); 
   background(img);
 }
 
 function draw() {
   if (keyIsPressed) {
     choice = key;
-//    clear_print();
+    selectColor(choice); // new function to handle color keys
+   clear_print();
   }
   if (mouseIsPressed) {
     newkeyChoice(choice);
   }
 } // end draw
+function selectColor(k) {
+  if (k === 'r') {
+    currentColor = color(100, 0, 0); // red
+  } else if (k === 'g') {
+    currentColor = color(0, 100, 0); // green
+  } else if (k === 'b') {
+    currentColor = color(0, 0, 100); // blue
+  } else if (k === 'y') {
+    currentColor = color(100, 100, 0); // yellow
+  } else if (k === 'c') {
+    currentColor = color(0, 100, 100); // cyan
+  } else if (k === 'm') {
+    currentColor = color(100, 0, 100); // magenta
+  }
+}
 
+function newkeyChoice(toolChoice) {
+  if (toolChoice == 'g') {
+    fill(100, 50, 25); // Using colorMode(RGB, 100)
+    noStroke();
+    ellipse(mouseX, mouseY, 100, 100);
+  }
+}
 
 function newkeyChoice(toolChoice) {
   if (toolChoice == '1') {
-   image(img2, mouseX, mouseY, 90, 90);}
+   image(img2, mouseX - 55, mouseY - 55, 110, 110);}
 
   else if (toolChoice == '2') {
-    image(img3, mouseX, mouseY, 150, 150);
+    image(img3, mouseX - 75, mouseY - 75, 150, 150);
   }
   else if (toolChoice == '3') {
-    image(img4, mouseX, mouseY, 100, 100);
+    image(img4, mouseX - 50, mouseY - 50, 100, 100);
   }
   else if (toolChoice == '4') {
-    image(img5, mouseX, mouseY, 100, 100);
+    image(img5, mouseX - 50, mouseY - 50, 100, 100);
   }
   else if (toolChoice == '5') {
-    image(img6, mouseX, mouseY, 90, 90);
+    image(img6, mouseX - 45, mouseY -45, 90, 90);
 }
 else if (toolChoice == '6') {
-    image(img7, mouseX, mouseY, 110, 110);
+    image(img7, mouseX - 55, mouseY - 55, 110, 110);
 }
 else if (toolChoice == '7') {
-    image(img8, mouseX, mouseY, 180, 180);
+    image(img8, mouseX - 90, mouseY - 90, 180, 180);
 }
 else if (toolChoice == '8') {
-    image(img9, mouseX, mouseY, 180, 180);
+    image(img9, mouseX - 90, mouseY - 90, 180, 180);
 }
 else if (toolChoice == '9') {
-    image(img10, mouseX, mouseY, 120, 120);
+    image(img10, mouseX - 60, mouseY - 60, 120, 120);
+}
+else if (toolChoice == 'z') {
+  noStroke();
+  // RGB values in 0–100 range because of colorMode
+  fill(random(100), random(100), random(100));
+  ellipse(mouseX, mouseY, 50, 50); // draw circle where the mouse is
+}
+else if (toolChoice == 'g') {
+  noStroke();
+  fill(currentColor);
+  ellipse(mouseX, mouseY, 50, 50);
+}
+else if (toolChoice == 'r') {
+  noStroke();
+  fill(currentColor);
+  ellipse(mouseX, mouseY, 50, 50);
+}
+else if (toolChoice == 'b') {
+  noStroke();
+  fill(currentColor);
+  ellipse(mouseX, mouseY, 50, 50);
+}
+else if (toolChoice == 'c') {
+  noStroke();
+  fill(currentColor);
+  ellipse(mouseX, mouseY, 50, 50);
+}
+else if (toolChoice == 'm') {
+  noStroke();
+  fill(currentColor);
+  ellipse(mouseX, mouseY, 50, 50);
 }
 }
-  
+  function clear_print() {
+  if (key == 'x' || key == 'X') {
+    background(img);
+  } 
+}
