@@ -1,3 +1,4 @@
+var gameState = 'start'; // initial screen
 var img;
 var img2;
 var img3;
@@ -8,6 +9,7 @@ var img7;
 var img8;
 var img9;
 var img10;
+var img11;
 var currentColor;
 var initials = 'cg'; // your initials
 var choice = '1'; // starting choice
@@ -25,21 +27,65 @@ function preload() {
   img8 = loadImage ('https://CarlosGuzman25.github.io/Armyproject/church.png')
   img9 = loadImage ('https://CarlosGuzman25.github.io/Armyproject/book.png')
   img10 = loadImage ('https://CarlosGuzman25.github.io/Armyproject/music.png')
+  img11 = loadImage ('https://CarlosGuzman25.github.io/Armyproject/cat.png')
 }
 function setup() {
   createCanvas(800, 600);
   colorMode(RGB,100); 
-  background(img);
+  background(img11);
+}
+function start() {
+  background(img11);
+  textAlign(CENTER, CENTER);
+  fill(3, 29, 69);
+  noStroke();
+  rect(10, 160, 750, 85, 150);
+
+  textSize(30);
+  stroke(255);
+  fill(255);
+  text('People risk their life so YOU can live a peaceful one', width / 2, 200);
+
+  textSize(30);
+  stroke(212, 4, 11);
+  fill(212, 4, 11);
+  let txt = 'start';
+  let x = width / 2;
+  let y = height / 2;
+  text(txt, x, y);
+
+  let textW = textWidth(txt);
+  let textH = 30;
+
+  if (
+    mouseIsPressed &&
+    mouseX > x - textW / 2 &&
+    mouseX < x + textW / 2 &&
+    mouseY > y - textH / 2 &&
+    mouseY < y + textH / 2
+  ) {
+    gameState = 'L1';
+    background(img); 
+  }
+}
+function levelOne () {
 }
 
 function draw() {
-  if (keyIsPressed) {
-    choice = key;
-    selectColor(choice); // new function to handle color keys
-   clear_print();
-  }
-  if (mouseIsPressed) {
-    newkeyChoice(choice);
+  if (gameState === 'start') {
+    start();
+  } else if (gameState === 'L1') {
+    levelOne();
+
+    if (keyIsPressed) {
+      choice = key;
+      selectColor(choice); // new function to handle color keys
+      clear_print();
+    }
+
+    if (mouseIsPressed) {
+      newkeyChoice(choice);
+    }
   }
 } // end draw
 function selectColor(k) {
